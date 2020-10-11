@@ -16,13 +16,16 @@ class VacancyLevel extends Model
 
     public function mark(): string
     {
-        if ($this->remainingCount === 0) {
-            return '×';
-        }
-        if ($this->remainingCount < 5) {
-            return '△';
-        }
-        return '◎';
+        $marks = ['empty' => '×', 'few' => '△', 'enough' => '◎'];
+        $slug = $this->slug();
+        assert(isset($marks[$slug]), new \DomainException('invalid slug value.'));
+
+        return $marks[$slug];
+    }
+
+    public function __toString()
+    {
+        return $this->mark();
     }
 
     public function slug(): string
