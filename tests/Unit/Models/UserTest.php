@@ -40,7 +40,8 @@ class UserTest extends TestCase
             '予約不可:レギュラー,空きなし,月の上限以下' => [
                 'plan' => 'regular',
                 'remainingCount' =>0,
-                'reservationCount' => 1,
+                'reservationCount' => 4,
+                // 値を4にする事で境界地のテストもできる
                 'canReserve' => false,
             ],
             '予約可:ゴールド,空きあり' => [
