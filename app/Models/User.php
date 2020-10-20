@@ -48,8 +48,7 @@ class User extends Authenticatable
     {
         $today = Carbon::today();
         return $this->reservations()
-            ->whereYear('created_at', $today->year)
-            ->whereMonth('created_at', $today->month)
+            ->whereRaw("DATE_FORMAT(created_at, '%Y%m') = ?", $today->format('Ym'))
             ->count();
     }
 
